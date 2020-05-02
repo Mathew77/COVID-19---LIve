@@ -1,1 +1,1 @@
-export { default } from './FacilitiesList';
+export { default } from './HealthTipsList';

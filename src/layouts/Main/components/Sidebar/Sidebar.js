@@ -52,6 +52,11 @@ const Sidebar = props => {
       icon: <PeopleIcon />
     },
     {
+      title: 'Health Tips',
+      href: '/healthtips',
+      icon: <TextFieldsIcon />
+    },
+    {
       title: 'Facilities',
       href: '/facilities',
       icon: <TextFieldsIcon />

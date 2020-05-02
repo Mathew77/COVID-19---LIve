@@ -2,17 +2,17 @@ import React, {useEffect, useState} from 'react';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { useSelector, useDispatch } from 'react-redux';
 import MaterialTable from 'material-table';
-import { fetchAllFacilities } from '../../actions/facilities'
+import { fetchAllFHealthTips } from '../../actions/healthtips'
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom'
 
 const FacilitiesListTable = () => {
-  const facilitiesList = useSelector(state => state.facilities.list);
+  const healthtipsList = useSelector(state => state.healthtips.list);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false)
- console.log(facilitiesList)
+ console.log(healthtipsList)
   useEffect(() => {
       setLoading('true');
       const onSuccess = () => {
@@ -21,7 +21,7 @@ const FacilitiesListTable = () => {
       const onError = () => {
         setLoading(false)     
       }
-    dispatch(fetchAllFacilities(onSuccess,onError))
+    dispatch(fetchAllFHealthTips(onSuccess,onError))
   }, [dispatch])
   //const questList = questionsList
 
@@ -31,34 +31,20 @@ const FacilitiesListTable = () => {
         <PerfectScrollbar>
           <div >
           <MaterialTable
-        title="Facilities by Country"
+        title="List of Health Tips"
         columns={[
           { title: " ID", field: "Id" },
           {
-            title: "Country",
-            field: "country",
+            title: "Questions",
+            field: "question",
           },
           
           {
-            title: "Contact Number",
-            field: "contact",
+            title: "Answers",
+            field: "answer",
             filtering: false
           },
-          {
-            title: "Email",
-            field: "email",
-            filtering: false
-          },
-          {
-            title: "Address",
-            field: "address",
-            filtering: false
-          },
-          {
-            title: "Others",
-            field: "others",
-            filtering: false
-          },
+          
           {
             title: "Action",
             field: "actions",
@@ -66,14 +52,11 @@ const FacilitiesListTable = () => {
           },
         ]}
         isLoading={loading}
-        data={facilitiesList.map((row) => ({
+        data={healthtipsList.map((row) => ({
           Id: row.id,
-          country: row.name,          
-          contact: row.contact,
-          email: '--',
-          address: '--',
-          others: '--',
-         
+          question: row.question,          
+          answer: row.answer,
+          
           actions: <Link to ={{ 
                         pathname: "/",  
                         state: { getpatientlists:{row}}

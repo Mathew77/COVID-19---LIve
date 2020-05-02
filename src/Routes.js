@@ -11,6 +11,7 @@ import {
   QuestionList as questionsView,
   DoctorsList as doctorsView,
   UsersList as userView,
+  HealthTipsList as healthtipsView,
   NotFound as NotFoundView
 } from './views';
 
@@ -28,7 +29,12 @@ const Routes = () => {
         layout={MainLayout}
         path="/dashboard"
       />
-     
+      <RouteWithLayout
+        component={userView}
+        exact
+        layout={MainLayout}
+        path="/user"
+      />
       <RouteWithLayout
         component={facilitiesView}
         exact
@@ -48,10 +54,10 @@ const Routes = () => {
         path="/doctors"
       />
       <RouteWithLayout
-        component={userView}
+        component={healthtipsView}
         exact
         layout={MainLayout}
-        path="/user"
+        path="/healthtips"
       />
       
       <RouteWithLayout

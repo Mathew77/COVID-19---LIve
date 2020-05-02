@@ -3,6 +3,7 @@ import questionsReducer from './questionsReducer'
 import facilitiesReducer from './facilitiesReducer'
 import usersReducer from './usersReducer'
 import doctorsReducer from './doctorReducer'
+import healthtipsReducer from './healthtipsReducer'
 
 
 
@@ -11,6 +12,7 @@ export default combineReducers({
   facilities: facilitiesReducer,
   listOfUsers:usersReducer,
   doctors:doctorsReducer,
+  healthtips:healthtipsReducer,
 
 })
 
