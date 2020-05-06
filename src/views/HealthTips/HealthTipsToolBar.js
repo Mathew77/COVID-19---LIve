@@ -41,12 +41,21 @@ const UsersToolbar = props => {
         <Button
           color="primary"
           variant="contained"
+          
         >
-          Add Facilities
+          Add Health Tips
         </Button>
+        
       </div>
       <div className={classes.row}>
-        
+      <span className={classes.spacer} />
+      <Button
+          color="primary"
+          variant="contained"
+          
+        >
+          Add Health Tips
+        </Button>
       </div>
     </div>
   );

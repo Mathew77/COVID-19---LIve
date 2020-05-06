@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 
 import FacilitiesListTable  from './FacilitiesListTable';
-import FacilitiesToolBar from './FacilitiesToolBar';
+import AddFacility from './AddFacility'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -19,7 +19,7 @@ const Facilities = () => {
 
   return (
     <div className={classes.root}>
-      <FacilitiesToolBar />
+      <AddFacility />
       <div className={classes.content}>
         <FacilitiesListTable  />
       </div>

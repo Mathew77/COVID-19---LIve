@@ -14,6 +14,7 @@ import Routes from './Routes';
 import { Provider } from 'react-redux'
 import store from './store'
 
+
 const browserHistory = createBrowserHistory();
 
 Chart.helpers.extend(Chart.elements.Rectangle.prototype, {

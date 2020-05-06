@@ -3,16 +3,29 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 import { useSelector, useDispatch } from 'react-redux';
 import MaterialTable from 'material-table';
 import { fetchAllFHealthTips } from '../../actions/healthtips'
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import Tooltip from '@material-ui/core/Tooltip';
-import IconButton from '@material-ui/core/IconButton';
-import { Link } from 'react-router-dom'
+import { FaPencilAlt, FaTrashAlt } from 'react-icons/fa';
+import {
+  Menu,
+  MenuList,
+  MenuButton,
+  MenuItem,
+} from "@reach/menu-button";
+import "@reach/menu-button/styles.css";
+import ModalDelete from './ActionModal/ModalDelete';
+import ModalEdit from './ActionModal/ModalEdit';
 
-const FacilitiesListTable = () => {
+
+const FacilitiesListTable = (props) => {
+  console.log(props)
   const healthtipsList = useSelector(state => state.healthtips.list);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false)
- console.log(healthtipsList)
+  const [collectmodal, setcollectmodal] = useState([])
+  const [open, setOpen] = useState(false);
+  const handleClose = () => {setOpen(false)};
+  const [open2, setOpen2] = useState(false);
+  const handleClose2 = () => {setOpen2(false)};
+  console.log(healthtipsList)
   useEffect(() => {
       setLoading('true');
       const onSuccess = () => {
@@ -25,7 +38,34 @@ const FacilitiesListTable = () => {
   }, [dispatch])
   //const questList = questionsList
 
+const editDetail = (detail) =>{
+  console.log(detail)
+  setOpen2(true);
+  setcollectmodal({...collectmodal, ...detail});
+}
+const deleteDetail = (detail) =>{
+  setOpen(true);
+  setcollectmodal({...collectmodal, ...detail});
+}
 
+
+const actionButtons = (e) =>{
+
+  return (
+
+      <Menu>
+          <MenuButton style={{ backgroundColor:"#3F51B5", fontSize:"16px", color:"#fff", border:"2px solid #3F51B5", borderRadius:"4px", width:"80px", heigth:"80px"}}>
+            Actions <span aria-hidden>▾</span>
+          </MenuButton>
+          <MenuList style={{hover:"#eee"}}>
+            <MenuItem onSelect={() => editDetail(e)}><FaPencilAlt color="primary" size="15px"/>{" "} Edit</MenuItem>                         
+            <MenuItem onSelect={() => deleteDetail(e)}><FaTrashAlt color="primary" size="15px"/>{" "}Delete</MenuItem>
+             
+          </MenuList>
+      </Menu>
+      )
+
+}
   return (
 
         <PerfectScrollbar>
@@ -33,18 +73,23 @@ const FacilitiesListTable = () => {
           <MaterialTable
         title="List of Health Tips"
         columns={[
-          { title: " ID", field: "Id" },
+          { title: " ID", field: "Id",filtering: false },
           {
-            title: "Questions",
-            field: "question",
-          },
-          
-          {
-            title: "Answers",
-            field: "answer",
+            title: "Title",
+            field: "title",
             filtering: false
           },
           
+          {
+            title: "Content",
+            field: "content",
+            filtering: false
+          },
+          {
+            title: "Type",
+            field: "type",
+            filtering: false
+          },
           {
             title: "Action",
             field: "actions",
@@ -54,21 +99,10 @@ const FacilitiesListTable = () => {
         isLoading={loading}
         data={healthtipsList.map((row) => ({
           Id: row.id,
-          question: row.question,          
-          answer: row.answer,
-          
-          actions: <Link to ={{ 
-                        pathname: "/",  
-                        state: { getpatientlists:{row}}
-                        }} 
-                        style={{ cursor: "pointer", color: "blue", 
-                        fontStyle: "bold" }}>
-                          <Tooltip title="Enter Result">
-                            <IconButton aria-label="Enter Result" >
-                            <VisibilityIcon color="primary"/>
-                          </IconButton>
-                          </Tooltip>
-                        </Link>
+          title: row.title,          
+          content: row.content,
+          type: row.healthtiptype===1 ? "General Health Tips" : "Covid 19 ",
+          actions: actionButtons(row)
 
             }))}
         options={{
@@ -84,11 +118,15 @@ const FacilitiesListTable = () => {
         }}
 
       />
-          </div>
-        </PerfectScrollbar>
+      <ModalDelete open={open} handleClose={handleClose} tips={collectmodal} />
+      <ModalEdit open={open2} handleClose={handleClose2} tips={collectmodal} />
+      </div>
+    </PerfectScrollbar>
      
   );
+  
 };
+
 
 
 

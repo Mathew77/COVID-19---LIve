@@ -10,3 +10,4 @@ export { default as NotFound } from './NotFound';
  export { default as FacilitiesList } from './Facilities';
  export { default as DoctorsList } from './Doctors';
  export { default as HealthTipsList } from './HealthTips';
+ export { default as HealthTipsTypeList } from './HealthTipsTypes';

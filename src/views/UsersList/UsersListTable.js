@@ -7,12 +7,14 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom'
+import {url} from './../../api'
+import axios from 'axios';
 
 const UsersListTable = () => {
   const ListUsers = useSelector(state => state.listOfUsers.regusers);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false)
-  console.log(ListUsers)
+  //console.log(ListUsers)
 
   useEffect(() => {
       setLoading('true');
@@ -24,8 +26,14 @@ const UsersListTable = () => {
       }
     dispatch(fetchAllRegisterUsers(onSuccess,onError))
   }, [dispatch])
-  //const questList = questionsList
 
+  function reslutpost (getCountryId){
+     axios.get(url+"country/"+getCountryId)
+    .then(res => {
+      console.log(res.data.name);
+      return res.data.name;
+    })
+}
 
   return (
 
@@ -69,7 +77,7 @@ const UsersListTable = () => {
         isLoading={loading}
         data={ListUsers.map((row) => ({
           id: row.id,
-          country: row.country,          
+          country: reslutpost(row.country),          
           imei: row.imei,
           created: row.created,
           address: row.lng + row.lad,

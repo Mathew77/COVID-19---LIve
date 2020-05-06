@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 
 import DoctorsListTable  from './DoctorsListTable';
-import DoctorToolBar from './DoctorToolBar';
+import AddDoctor from './AddDoctor';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -19,7 +19,7 @@ const Doctors = () => {
 
   return (
     <div className={classes.root}>
-      <DoctorToolBar />
+      <AddDoctor />
       <div className={classes.content}>
         <DoctorsListTable  />
       </div>

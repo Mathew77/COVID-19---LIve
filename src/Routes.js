@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Switch, Redirect } from 'react-router-dom';
 
 import { RouteWithLayout } from './components';
 import { Main as MainLayout, Minimal as MinimalLayout } from './layouts';
@@ -12,11 +12,15 @@ import {
   DoctorsList as doctorsView,
   UsersList as userView,
   HealthTipsList as healthtipsView,
+  HealthTipsTypeList as healthtipstypeView,
   NotFound as NotFoundView
 } from './views';
+import history  from './history'
 
 const Routes = () => {
+  
   return (
+    <BrowserRouter history={history}>
     <Switch>
       <Redirect
         exact
@@ -59,7 +63,12 @@ const Routes = () => {
         layout={MainLayout}
         path="/healthtips"
       />
-      
+      <RouteWithLayout
+        component={healthtipstypeView}
+        exact
+        layout={MainLayout}
+        path="/healthtipstype"
+      />
       <RouteWithLayout
         component={NotFoundView}
         exact
@@ -68,6 +77,7 @@ const Routes = () => {
       />
       <Redirect to="/not-found" />
     </Switch>
+    </BrowserRouter>
   );
 };
 

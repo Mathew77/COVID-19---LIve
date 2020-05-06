@@ -1,8 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
-
 import HealthTipsListTable  from './HealthTipsListTable';
-import HealthTipsToolBar from './HealthTipsToolBar';
+import AddHealthTips from './AddHealthTips'
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -13,13 +13,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Facilities = () => {
+const HealthTipsList = () => {
   const classes = useStyles();
 
 
   return (
     <div className={classes.root}>
-      <HealthTipsToolBar />
+       <AddHealthTips />   
       <div className={classes.content}>
         <HealthTipsListTable  />
       </div>
@@ -27,4 +27,4 @@ const Facilities = () => {
   );
 };
 
-export default Facilities;
+export default HealthTipsList;
