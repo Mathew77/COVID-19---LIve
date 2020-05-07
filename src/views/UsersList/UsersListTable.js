@@ -10,6 +10,8 @@ import { Link } from 'react-router-dom'
 import {url} from './../../api'
 import axios from 'axios';
 
+
+
 const UsersListTable = () => {
   const ListUsers = useSelector(state => state.listOfUsers.regusers);
   const dispatch = useDispatch();
@@ -27,12 +29,19 @@ const UsersListTable = () => {
     dispatch(fetchAllRegisterUsers(onSuccess,onError))
   }, [dispatch])
 
-  function reslutpost (getCountryId){
-     axios.get(url+"country/"+getCountryId)
-    .then(res => {
-      console.log(res.data.name);
-      return res.data.name;
-    })
+//   function countryname(getCountryId) {
+//     let name;
+//     axios.get(url+"country/"+getCountryId)
+//     .then(res => {
+//     console.log(res.data.name);
+//     name = res.data.name;
+//     })
+//         console.log(name);
+//         return name;
+// }
+const countryname = async(getCountryId) => {
+  const res = await axios.get(url+"country/"+getCountryId)
+   console.log(res.data.name)
 }
 
   return (
@@ -77,15 +86,15 @@ const UsersListTable = () => {
         isLoading={loading}
         data={ListUsers.map((row) => ({
           id: row.id,
-          country: reslutpost(row.country),          
+          country: countryname(row.country),          
           imei: row.imei,
           created: row.created,
           address: row.lng + row.lad,
           others: '--',
          
           actions: <Link to ={{ 
-                        pathname: "/",  
-                        state: { getpatientlists:{row}}
+                        pathname: "/" 
+                       
                         }} 
                         style={{ cursor: "pointer", color: "blue", 
                         fontStyle: "bold" }}>
