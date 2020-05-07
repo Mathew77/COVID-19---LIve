@@ -1,6 +1,6 @@
 {
   "name": "live",
-  "homepage": "http://Mathew77.github.io/COVID-19---LIve",
+  "homepage": "https://Mathew77.github.io/COVID-19---LIve",
   "author": "Covid 19",
   "email": "mathewadeggbite@gmail.com",
   "licence": "MIT",
@@ -41,7 +41,7 @@
     "history": "^4.9.0",
     "material-table": "^1.57.2",
     "moment": "^2.24.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-chartjs-2": "^2.7.6",
@@ -61,7 +61,7 @@
     "validate.js": "^0.13.1"
   },
   "devDependencies": {
-    "eslint": "5.16.0",
+    "eslint": "^6.0.6",
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.4",
     "prettier": "^1.17.1",
